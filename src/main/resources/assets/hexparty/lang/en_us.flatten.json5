@@ -1,0 +1,15 @@
+{
+  "hexparty": {
+    "configuration": {
+      "title": "Hexparty Configs",
+      "section.hexparty.common.toml": {
+        "": "Hexparty Configs",
+        "title": "Hexparty Configs"
+      }
+    },
+    "tooltip": {
+      http_response: "HTTPResponse \"%s\""
+    }
+  }
+
+}
