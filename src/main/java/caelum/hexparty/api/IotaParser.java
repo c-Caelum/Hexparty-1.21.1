@@ -171,14 +171,10 @@ public class IotaParser {
                 if (!(isString(obj, "startDir") && isString(obj, "string"))) {
                     return null;
                 }
-                try {
-                    HexDir startDir = HexDir.fromString(obj.get("startDir").getAsString());
-                    String angles = obj.get("angles").getAsString();
-                    HexPattern pattern = HexPattern.fromAnglesUnchecked(angles, startDir);
-                    return new PatternIota(pattern);
-                } catch (Exception e) {
-                    return null;
-                }
+                HexDir startDir = HexDir.fromString(obj.get("startDir").getAsString());
+                String angles = obj.get("angles").getAsString();
+                HexPattern pattern = HexPattern.fromAnglesUnchecked(angles, startDir);
+                return new PatternIota(pattern);
             }
         };
         converterHashMap.put(Set.of("startDir", "angles"), PATTERN);
@@ -236,7 +232,7 @@ public class IotaParser {
                 }
                 obj.add("matrix", arr);
 
-                return null;
+                return obj;
             }
 
             @Override
