@@ -21,7 +21,8 @@
         valid_method: "a valid method",
         valid_headers: "a valid set of headers",
         valid_json_response: "a response of valid JSON",
-        wrong_path: "a reponse that did not return a 404"
+        wrong_path: "a reponse that did not return a 404",
+        exceeding_response: "a response whose length does not exceed 1728"
       },
     },
     "iota.hexparty": {

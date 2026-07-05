@@ -34,7 +34,6 @@ public class OpGetIota implements DefaultedConstMediaAction {
     @Override
     public @NotNull List<Iota> execute(@NotNull List<? extends Iota> args, @NotNull CastingEnvironment env) throws Mishap {
         HttpResponse<String> request = OperatorUtils.getResponse(args, 0, argc);
-        env.printMessage(Component.literal(request.request().uri().toString()));
         if (request.statusCode() == 404) {
             throw MishapInvalidIota.ofType(args.get(0), 0, "wrong_path");
         }
