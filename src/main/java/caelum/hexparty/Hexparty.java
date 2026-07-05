@@ -3,6 +3,8 @@ package caelum.hexparty;
 import at.petrak.hexcasting.common.lib.HexRegistries;
 import caelum.hexparty.init.HexpartyIotas;
 import caelum.hexparty.init.HexpartyPatterns;
+import com.mojang.datafixers.util.Either;
+import com.mojang.datafixers.util.Pair;
 import com.mojang.logging.LogUtils;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
@@ -17,9 +19,13 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 import org.slf4j.Logger;
 
+import java.net.http.HttpResponse;
+import java.util.Map;
+import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
@@ -68,7 +74,19 @@ public class Hexparty {
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
-        LOGGER.info("HELLO from server starting");
+        NeoForge.EVENT_BUS.addListener(Hexparty::tick);
+    }
+
+    public static void tick(ServerTickEvent.Post tickEvent) {
+        int thisTick = tickEvent.getServer().getTickCount();
+        if (thisTick % 20 != 0) {
+            return;
+        }
+        for (Map.Entry<UUID, Pair<Either<HttpResponse<String>, Throwable>, Integer>> entry : HTTPHandler.INSTANCE.responses.entrySet()) {
+            if (Math.abs(entry.getValue().getSecond() - thisTick) > 6000) {
+                HTTPHandler.INSTANCE.responses.remove(entry.getKey());
+            }
+        }
     }
 
     public static ResourceLocation id(String id) {

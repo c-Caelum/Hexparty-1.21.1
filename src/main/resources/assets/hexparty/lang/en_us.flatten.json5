@@ -9,6 +9,24 @@
     },
     "tooltip": {
       http_response: "HTTPResponse \"%s\""
+    },
+  },
+  hexcasting: {
+    mishap: {
+      "invalid_value.class": {
+        string_even_list: "a list of strings with an even length",
+        string_list: "a list of strings",
+        response: "a response",
+        finished_response: "a finished or unexpired response",
+        valid_method: "a valid method",
+        valid_headers: "a valid set of headers",
+        valid_json_response: "a response of valid JSON",
+        wrong_path: "a reponse that did not return a 404"
+      },
+    },
+    "iota.hexparty": {
+      response: "Response",
+      "response.desc": "a response"
     }
   }
 

@@ -9,6 +9,7 @@ import net.minecraft.core.UUIDUtil;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import caelum.hexparty.HTTPHandler;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.codec.StreamCodec;
 import org.checkerframework.checker.units.qual.C;
 import org.jetbrains.annotations.NotNull;
@@ -20,6 +21,7 @@ public class ResponseIota extends Iota {
     public final UUID uuid;
     // a nice light blue
     public static final int COLOR = 0x6386BF;
+    public static final int DEAD_COLOR = 0xED8499;
 
     public ResponseIota(UUID uuid) {
         super(() -> HexpartyIotas.RESPONSE);
@@ -45,7 +47,12 @@ public class ResponseIota extends Iota {
 
     @Override
     public Component display() {
-        return Component.translatable("hexparty.tooltip.http_response", uuid).withColor(COLOR);
+        MutableComponent base = Component.translatable("hexparty.tooltip.http_response", uuid.toString());
+        if (HTTPHandler.INSTANCE.responses.containsKey(uuid)) {
+            return base.withColor(COLOR);
+        } else {
+            return base.withColor(DEAD_COLOR);
+        }
     }
 
     @Override

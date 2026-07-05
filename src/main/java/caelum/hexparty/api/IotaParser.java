@@ -101,6 +101,23 @@ public class IotaParser {
 
     public static JsonElement iotaToJson(Iota iota, ServerLevel world) {
 
+        if (iota instanceof DoubleIota doubleIota) {
+            return new JsonPrimitive(doubleIota.getDouble());
+        }
+        if (iota instanceof StringIota stringIota) {
+            return new JsonPrimitive(stringIota.getString());
+        }
+        if (iota instanceof BooleanIota booleanIota) {
+            return new JsonPrimitive(booleanIota.getBool());
+        }
+        if (iota instanceof ListIota listIota) {
+            JsonArray arr = new JsonArray(listIota.getList().size());
+            for (Iota el : listIota.getList()) {
+                arr.add(iotaToJson(el, world));
+            }
+            return arr;
+        }
+
         Converter<? extends Iota> converter = iotaConverterHashmap.get(iota.getType());
         if (converter == null) {
             JsonObject obj = new JsonObject();
@@ -168,7 +185,7 @@ public class IotaParser {
 
             @Override
             public PatternIota fromJson(JsonObject obj, ServerLevel world) {
-                if (!(isString(obj, "startDir") && isString(obj, "string"))) {
+                if (!(isString(obj, "startDir") && isString(obj, "angles"))) {
                     return null;
                 }
                 HexDir startDir = HexDir.fromString(obj.get("startDir").getAsString());
@@ -437,19 +454,16 @@ public class IotaParser {
             @Override
             public GateIota fromJson(JsonObject obj, ServerLevel world) {
                 if (!isString(obj, "type") && !isString(obj, "gate")) {
-                    Hexparty.LOGGER.info("wrong key types");
                     return null;
                 }
                 String type = obj.get("type").getAsString();
                 assert type != null;
                 if (!type.equals("location") && !type.equals("entity") && !type.equals("drifting")) {
-                    Hexparty.LOGGER.info("not in the types");
                     return null;
                 }
                 UUID gateUUID = UUID.fromString(obj.get("gate").getAsString());
                 HexalObfMapState.GateData gateData = HexalObfMapState.getServerState(world.getServer()).getGateData(gateUUID);
                 if (gateData == null) {
-                    Hexparty.LOGGER.info("gatedata is null..");
                     return null;
                 }
                 return switch (gateData.type()) {
