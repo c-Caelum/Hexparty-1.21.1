@@ -27,12 +27,12 @@ public class HexpartyPatterns {
 
     //public static final ActionRegistryEntry TOJSON = make("tojson", HexPattern.fromAngles("eqaa", HexDir.EAST), new OpToJson());
     //public static final ActionRegistryEntry FROMJSON = make("fromjson", HexPattern.fromAngles("eqaaw", HexDir.EAST), new OpFromJson());
-    public static final ActionRegistryEntry GET_COPYPARTY = make("get_copyparty", HexPattern.fromAngles("wqqqqwqdqdwdqdeede", HexDir.NORTH_EAST), new OpGetCopyparty());
-    public static final ActionRegistryEntry SET_COPYPARTY = make("set_copyparty", HexPattern.fromAngles("wqqqqwqdqdwdqddqaq", HexDir.NORTH_EAST), new OpSetCopyparty());
-    public static final ActionRegistryEntry GET_IOTA_FROM_RESPONSE = make("iota_from_response", HexPattern.fromAngles("qqqqwqdwaawe", HexDir.NORTH_EAST), new OpGetIota());
-    public static final ActionRegistryEntry REQUEST = make("request", HexPattern.fromAngles("qqqqwqdqddqe", HexDir.NORTH_EAST), new OpRequest());
-    public static final ActionRegistryEntry GET_RESPONSE = make("get_response", HexPattern.fromAngles("qqqqwweaaead", HexDir.NORTH_EAST), new OpRequest());
-    public static final ActionRegistryEntry STATUS_CODE = make("status_code", HexPattern.fromAngles("qqqqwaedewed", HexDir.NORTH_EAST), new OpRequest());
+    public static final ActionRegistryEntry GET_COPYPARTY = make("get_copyparty", HexPattern.fromAngleString("wqqqqwqdqdwdqdeede", HexDir.NORTH_EAST), new OpGetCopyparty());
+    public static final ActionRegistryEntry SET_COPYPARTY = make("set_copyparty", HexPattern.fromAngleString("wqqqqwqdqdwdqddqaq", HexDir.NORTH_EAST), new OpSetCopyparty());
+    public static final ActionRegistryEntry GET_IOTA_FROM_RESPONSE = make("iota_from_response", HexPattern.fromAngleString("qqqqwqdwaawe", HexDir.NORTH_EAST), new OpGetIota());
+    public static final ActionRegistryEntry REQUEST = make("request", HexPattern.fromAngleString("qqqqwqdqddqe", HexDir.NORTH_EAST), new OpRequest());
+    public static final ActionRegistryEntry GET_RESPONSE = make("get_response", HexPattern.fromAngleString("qqqqwweaaead", HexDir.NORTH_EAST), new OpRequest());
+    public static final ActionRegistryEntry STATUS_CODE = make("status_code", HexPattern.fromAngleString("qqqqwaedewed", HexDir.NORTH_EAST), new OpRequest());
 
     private static ActionRegistryEntry make(String name, HexPattern pattern, Action action) {
         return make(name, new ActionRegistryEntry(pattern, action));

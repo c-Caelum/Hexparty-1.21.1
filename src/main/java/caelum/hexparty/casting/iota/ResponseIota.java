@@ -1,5 +1,6 @@
 package caelum.hexparty.casting.iota;
 
+import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
 import at.petrak.hexcasting.api.casting.iota.Iota;
 import at.petrak.hexcasting.api.casting.iota.IotaType;
 import caelum.hexparty.init.HexpartyIotas;
@@ -33,7 +34,7 @@ public class ResponseIota extends Iota {
     }
 
     @Override
-    public boolean isTruthy() {
+    public boolean isTruthy(CastingEnvironment env) {
         return HTTPHandler.INSTANCE.responses.containsKey(uuid);
     }
 

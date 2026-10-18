@@ -144,7 +144,7 @@ public class IotaParser {
         };
 
         converterHashMap.put(Set.of("null"), NULL);
-        iotaConverterHashmap.put(HexIotaTypes.NULL, NULL);
+        iotaConverterHashmap.put(HexIotaTypes.NULL.get(), NULL);
 
         Converter<Vec3Iota> VEC3 = new Converter<Vec3Iota>() {
             @Override
@@ -171,15 +171,15 @@ public class IotaParser {
             }
         };
         converterHashMap.put(Set.of("x","y","z"), VEC3);
-        iotaConverterHashmap.put(HexIotaTypes.VEC3, VEC3);
+        iotaConverterHashmap.put(HexIotaTypes.VEC3.get(), VEC3);
 
         Converter<PatternIota> PATTERN = new Converter<PatternIota>() {
             @Override
             public JsonElement toJson(Iota iota, ServerLevel world) {
                 HexPattern pattern = ((PatternIota)iota).getPattern();
                 JsonObject obj = new JsonObject();
-                obj.addProperty("startDir", pattern.getStartDir().toString());
-                obj.addProperty("angles", pattern.anglesSignature());
+                obj.addProperty("startDir", pattern.getOrientation().toString());
+                obj.addProperty("angles", pattern.getSignature().toAnglesString());
                 return obj;
             }
 
@@ -190,12 +190,12 @@ public class IotaParser {
                 }
                 HexDir startDir = HexDir.fromString(obj.get("startDir").getAsString());
                 String angles = obj.get("angles").getAsString();
-                HexPattern pattern = HexPattern.fromAnglesUnchecked(angles, startDir);
+                HexPattern pattern = HexPattern.fromAngleString(angles, startDir, false);
                 return new PatternIota(pattern);
             }
         };
         converterHashMap.put(Set.of("startDir", "angles"), PATTERN);
-        iotaConverterHashmap.put(HexIotaTypes.PATTERN, PATTERN);
+        iotaConverterHashmap.put(HexIotaTypes.PATTERN.get(), PATTERN);
 
         Converter<EntityIota> ENTITY = new Converter<EntityIota>() {
             @Override
@@ -229,7 +229,7 @@ public class IotaParser {
             }
         };
         converterHashMap.put(Set.of("uuid", "name"), ENTITY);
-        iotaConverterHashmap.put(HexIotaTypes.ENTITY, ENTITY);
+        iotaConverterHashmap.put(HexIotaTypes.ENTITY.get(), ENTITY);
 
         Converter<MatrixIota> MATRIX = new Converter<MatrixIota>() {
             @Override

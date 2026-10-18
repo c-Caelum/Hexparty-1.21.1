@@ -4,6 +4,7 @@ plugins {
     id 'net.neoforged.moddev' version '2.0.141'
     id 'idea'
     id 'at.petra-k.pkpcpbp.PKJson5Plugin' version "${pkpcpbp_ver}"
+    id 'org.jetbrains.kotlin.jvm'
 }
 
 pkJson5 {
@@ -202,8 +203,8 @@ dependencies {
     implementation("vazkii.patchouli:Patchouli:$minecraft_version-$patchouli_version-NEOFORGE")
     implementation("libs:hexcasting-neoforge-$minecraft_version:$hexcasting_version")
     implementation("libs:paucal:$paucal_version+$minecraft_version-neoforge")
-    implementation("libs:moreiotas-${moreiotas_version}-${minecraft_version}-devel")
-    implementation("libs:hexal-${hexal_version}-DEVEL")
+    implementation("libs:moreiotas-${moreiotas_version}")
+    implementation("libs:hexal-${hexal_version}")
     implementation("com.samsthenerd.inline:inline-neoforge:$minecraft_version-$inline_version")
     implementation("dev.architectury:architectury-neoforge:$architectury_api_version")
     implementation("io.wispforest:accessories-neoforge:$accessories_version+$minecraft_version")
@@ -229,6 +230,7 @@ dependencies {
     implementation("org.ejml:ejml-simple:${ejml_version}") {
         transitive = false
     }
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
@@ -279,4 +281,7 @@ idea {
         downloadSources = true
         downloadJavadoc = true
     }
+}
+kotlin {
+    jvmToolchain(21)
 }

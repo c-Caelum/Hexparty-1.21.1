@@ -1,22 +1,20 @@
 package caelum.hexparty.api;
 
-import at.petrak.hexcasting.api.casting.SpellList;
 import at.petrak.hexcasting.api.casting.iota.Iota;
 import at.petrak.hexcasting.api.casting.iota.ListIota;
 import at.petrak.hexcasting.api.casting.mishaps.Mishap;
 import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidIota;
 import at.petrak.hexcasting.api.casting.mishaps.MishapNotEnoughArgs;
+import at.petrak.hexcasting.api.utils.TreeList;
 import caelum.hexparty.HTTPHandler;
 import caelum.hexparty.casting.iota.ResponseIota;
 import caelum.hexparty.casting.mishap.MishapResponseDiedInAHole;
 import com.mojang.datafixers.util.Either;
 import net.minecraft.network.chat.Component;
 import ram.talia.moreiotas.api.casting.iota.StringIota;
-
+c
 import java.net.http.HttpResponse;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class OperatorUtils {
     public static String[] getStringList(List<? extends Iota> args, int idx, int argc) throws Mishap {
@@ -27,9 +25,9 @@ public class OperatorUtils {
         if (!(arg instanceof ListIota listIota)) {
             throw MishapInvalidIota.of(arg, idx, "string_list");
         }
-        SpellList list = listIota.getList();
+        TreeList<Iota> list = listIota.getList();
         String[] output = new String[list.size()];
-        SpellList.SpellListIterator iterator = list.iterator();
+        ListIterator<Iota> iterator = list.iterator();
         int size = list.size();
         for (int iteration = 0; iteration < size && iterator.hasNext(); iteration++) {
             Iota i = iterator.next();

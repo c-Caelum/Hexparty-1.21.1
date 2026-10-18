@@ -4,12 +4,11 @@ import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
 import at.petrak.hexcasting.api.casting.iota.Iota;
 import at.petrak.hexcasting.api.casting.mishaps.Mishap;
 import at.petrak.hexcasting.api.pigment.FrozenPigment;
+import at.petrak.hexcasting.api.utils.TreeList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.DyeColor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
 
 public class MishapResponseDiedInAHole extends Mishap {
 
@@ -26,7 +25,8 @@ public class MishapResponseDiedInAHole extends Mishap {
     }
 
     @Override
-    public void execute(@NotNull CastingEnvironment castingEnvironment, @NotNull Mishap.Context context, @NotNull List<Iota> list) {
+    public @NotNull TreeList<Iota> execute(@NotNull CastingEnvironment castingEnvironment, @NotNull Mishap.Context context, @NotNull TreeList<Iota> list) {
+        return list;
     }
 
     @Override
