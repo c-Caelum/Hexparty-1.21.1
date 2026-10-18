@@ -12,7 +12,6 @@ import caelum.hexparty.casting.mishap.MishapResponseDiedInAHole;
 import com.mojang.datafixers.util.Either;
 import net.minecraft.network.chat.Component;
 import ram.talia.moreiotas.api.casting.iota.StringIota;
-c
 import java.net.http.HttpResponse;
 import java.util.*;
 
