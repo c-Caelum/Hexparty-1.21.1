@@ -28,6 +28,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.Iterator;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(Hexparty.MODID)
@@ -82,12 +83,20 @@ public class Hexparty {
         if (thisTick % 20 != 0) {
             return;
         }
-        for (Map.Entry<UUID, Pair<Either<HttpResponse<String>, Throwable>, Integer>> entry : HTTPHandler.INSTANCE.responses.entrySet()) {
+
+        Iterator<Map.Entry<UUID, Pair<Either<HttpResponse<String>, Throwable>, Integer>>> iterator =
+                HTTPHandler.INSTANCE.responses.entrySet().iterator();
+
+        while (iterator.hasNext()) {
+            Map.Entry<UUID, Pair<Either<HttpResponse<String>, Throwable>, Integer>> entry =
+                    iterator.next();
+
             if (Math.abs(entry.getValue().getSecond() - thisTick) > 6000) {
-                HTTPHandler.INSTANCE.responses.remove(entry.getKey());
+                iterator.remove();
             }
         }
     }
+
 
     public static ResourceLocation id(String id) {
         return ResourceLocation.fromNamespaceAndPath(MODID, id);

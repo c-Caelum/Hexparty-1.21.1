@@ -10,6 +10,22 @@
     "tooltip": {
       http_response: "HTTPResponse \"%s\""
     },
+    "entry": {
+      "http_spells": "HexParty"
+    },
+    "page": {
+      "http_spells": {
+        "entry": "These patterns seem to hint at a world outside of this one. Upon casting they seem to reach out to this other world and, after a bit of time send back information from it. Though this world seems insubstantial, I can still use it to store information or even hexes. Most take a $(thing)path$() which is a string formatted like this \"users/me/myhex\" and return a Response Iota.",
+        "explanation": "To use the following pattern, one needs a $(thing)Path$() and $(br)optionally, one may also include a $(thing)method$() as a string, $(thing)headers$() as a list of key-value string pairs ([key, value,...]), and a $(thing)body$() as a string.$(br)Supported $(thing)Methods$(): GET,POST,PUT,DELETE,HEAD,OPTIONS,PATCH,TRACE$(br2)I believe $(l:https://github.com/9001/copyparty/blob/hovudstraum/docs/devnotes.md#http-api)this$() reference may be useful in understanding this pattern more",
+        "request": "$(br)This seems to be a more complex but flexible verson of $(thing)Get CopyParty$(). Sends a request to the given $(thing)Path$(). Optionally, the $(thing)method$() used, $(thing)headers$() attached, and the $(thing)body$() of data sent with it may also be specified.",
+        "get_response": "Given a Response iota, attempt to parse the results. Will Mishap if too early or an error is thrown.",
+        "get_copyparty": "Given a path and a password, attempts to make a request to the hexparty path given. You *can* do this with the request pattern, but it is significantly easier to do it this way.",
+        "set_copyparty": "Given a path, iotas, and password, attempts to store the iotas at that hexparty path. You *can* do this with the Request pattern, but it is significantly better to do it this way.",
+        "iota_from_response": "Given a Response attempted to extract a pattern list, using something called $(thing)\"JSON\"$() as an intermediary. (Ducky Peripherals' mappings)",
+        "get_code": "Given a response iota returns a status code that indicates whether the information has been retrieved successfully or not. 200 for success, -1 for in progress, and 404 for information not found.",
+
+      }
+    }
   },
   hexcasting: {
     mishap: {
@@ -26,8 +42,18 @@
       },
     },
     "iota.hexparty": {
-      response: "Response",
+      "response": "Response",
       "response.desc": "a response"
+    },
+    "action": {
+      "hexparty":{
+        "request": "Request",
+        "get_response": "Get Response",
+        "get_copyparty": "Get Copyparty",
+        "set_copyparty": "Set Copyparty",
+        "iota_from_response": "Get Response II",
+        "get_code": "Get Status"
+      }
     }
   }
 

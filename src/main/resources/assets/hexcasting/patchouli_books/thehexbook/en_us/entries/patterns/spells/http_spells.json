@@ -1,0 +1,71 @@
+{
+  "name": "hexparty.entry.http_spells",
+  "category": "hexcasting:patterns/spells",
+  "icon": "minecraft:sculk_shrieker",
+  "sortnum": 27,
+  "advancement": "hexcasting:root",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "hexparty.page.http_spells.entry"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "header": "hexcasting.action.hexparty.get_code",
+      "op_id": "hexparty:status_code",
+      "anchor": "hexparty:get_code",
+      "input": "request",
+      "output": "num",
+      "text": "hexparty.page.http_spells.get_code"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "header": "hexcasting.action.hexparty.get_copyparty",
+      "op_id": "hexparty:get_copyparty",
+      "anchor": "hexparty:get_copyparty",
+      "input": "path, password",
+      "output": "response",
+      "text": "hexparty.page.http_spells.get_copyparty"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "header": "hexcasting.action.hexparty.set_copyparty",
+      "op_id": "hexparty:set_copyparty",
+      "anchor": "hexparty:set_copyparty",
+      "input": "path, any, password",
+      "output": "response",
+      "text": "hexparty.page.http_spells.set_copyparty"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "header": "hexcasting.action.hexparty.get_response",
+      "op_id": "hexparty:get_response",
+      "anchor": "hexparty:get_response",
+      "input": "response",
+      "output": "num, string",
+      "text": "hexparty.page.http_spells.get_response"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "header": "hexcasting.action.hexparty.iota_from_response",
+      "op_id": "hexparty:iota_from_response",
+      "anchor": "hexparty:iota_from_response",
+      "input": "response",
+      "output": "any",
+      "text": "hexparty.page.http_spells.iota_from_response"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "hexparty.page.http_spells.explanation"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "header": "hexcasting.action.hexparty.request",
+      "op_id": "hexparty:request",
+      "anchor": "hexparty:request",
+      "input": "path, method | null, headers | null, body | null",
+      "output": "response",
+      "text": "hexparty.page.http_spells.request"
+    }
+  ]
+}
