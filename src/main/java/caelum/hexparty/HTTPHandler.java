@@ -12,10 +12,11 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class HTTPHandler {
     public final HttpClient client = HttpClient.newHttpClient();
-    public final HashMap<UUID, Pair<Either<HttpResponse<String>, Throwable>, Integer>> responses = new HashMap<>();
+    public final ConcurrentHashMap<UUID, Pair<Either<HttpResponse<String>, Throwable>, Integer>> responses = new ConcurrentHashMap<>();
     public static final String copypartyURL = Config.COPYPARTY_URL.get();
     public static final List<? extends String> allowedMethods = Config.ALLOWED_METHODS.get();
     public static final HTTPHandler INSTANCE = new HTTPHandler();
